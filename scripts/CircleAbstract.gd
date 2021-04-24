@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 class_name CircleAbstract
 signal selected
 signal unselected

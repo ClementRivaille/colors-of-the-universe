@@ -19,11 +19,13 @@ margin_top = -1350.38
 margin_right = 1464.0
 margin_bottom = 1368.62
 mouse_filter = 2
+color = Color( 0.0784314, 0, 0.403922, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Circle" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -0.707107 )
 scale = Vector2( 0.1, 0.1 )
-color = Color( 0.427451, 0.427451, 0.427451, 1 )
+color = Color( 0.678431, 0.211765, 0.160784, 1 )
 zooming = true

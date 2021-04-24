@@ -18,18 +18,25 @@ var on_top := false
 
 onready var tween: Tween = $Tween
 onready var area: Area2D = $Area2D
+onready var sprite: Sprite = $Sprite
 
 onready var debug_label: Label = $DebugLabel
 
 func _ready():
-  self_modulate = color
+  sprite.self_modulate = color
 
   # Pick Children color
-  var color_pick := randf()
-  if color_pick < 0.5:
-    child_color = color.lightened(0.2 + randf() * 0.6)
-  else:
-    child_color = color.darkened(0.2 + randf() * 0.6)
+  var saturation := 0.3 + randf() * 0.6
+  var value := 1.0 - saturation + randf() * 0.2
+  var child_hue := color.h
+  if randf() < 0.2:
+    child_hue = fmod(abs(color.h + 0.15), 1.0)
+  child_color = Color.from_hsv(child_hue, 0.4, 0.4 + randf() * 0.3)
+#  var hue_diff := 0.1 + randf() * 0.1
+#  if randf() > 0.5:
+#    hue_diff = -hue_diff
+#  var child_hue := fmod(abs(color.h + hue_diff), 1.0)
+#  child_color = Color.from_hsv(child_hue, 0.5 + randf()*0.3, 0.7 + randf() * 0.3)
 
   # Area detection
   area.connect("mouse_entered", self, "on_mouse_enter")

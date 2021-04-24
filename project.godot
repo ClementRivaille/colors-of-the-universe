@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Circle.gd"
 }, {
-"base": "Sprite",
+"base": "Node2D",
 "class": "CircleAbstract",
 "language": "GDScript",
 "path": "res://scripts/CircleAbstract.gd"
