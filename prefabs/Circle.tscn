@@ -7,3 +7,5 @@
 self_modulate = Color( 0.537255, 0.537255, 0.537255, 1 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

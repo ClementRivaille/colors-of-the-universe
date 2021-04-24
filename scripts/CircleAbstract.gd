@@ -7,3 +7,6 @@ var child_scale := 0.2
 
 func add_child_circle():
   pass
+
+func fade_in():
+  pass
