@@ -6,15 +6,22 @@ onready var camera: ZoomCamera = $Camera2D
 
 func _ready():
   root_circle.connect("is_top", self, "switch_root_circle")
+  root_circle.connect("target", self, "change_target")
+  camera.target = root_circle
   
 func switch_root_circle(circle: Circle):
   camera.update_bg_color(root_circle.color)
   circle.scale = circle.global_scale
+  circle.position = circle.global_position
   root_circle.remove_child(circle)
   add_child(circle)
   circle.set_owner(self)
   circle.connect("is_top", self, "switch_root_circle")
+  circle.connect("target", self, "change_target")
   circle.zooming = true
   
   root_circle.queue_free()
   root_circle = circle
+
+func change_target(node: Node2D):
+  camera.target = node

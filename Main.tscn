@@ -9,6 +9,8 @@ script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
+smoothing_speed = 1.0
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
