@@ -20,9 +20,39 @@ _global_script_classes=[ {
 "path": "res://scripts/CircleAbstract.gd"
 }, {
 "base": "Node2D",
+"class": "Drums",
+"language": "GDScript",
+"path": "res://scripts/Drums.gd"
+}, {
+"base": "Node2D",
 "class": "Main",
 "language": "GDScript",
 "path": "res://scripts/Main.gd"
+}, {
+"base": "Sampler",
+"class": "Multisampler",
+"language": "GDScript",
+"path": "res://addons/SimpleSampler/multisampler.gd"
+}, {
+"base": "Resource",
+"class": "NoteSample",
+"language": "GDScript",
+"path": "res://addons/SimpleSampler/sample_resource.gd"
+}, {
+"base": "Node",
+"class": "NoteValueCalculator",
+"language": "GDScript",
+"path": "res://addons/SimpleSampler/note_value.gd"
+}, {
+"base": "Node2D",
+"class": "Orchestra",
+"language": "GDScript",
+"path": "res://scripts/Orchestra.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "Sampler",
+"language": "GDScript",
+"path": "res://addons/SimpleSampler/sampler.gd"
 }, {
 "base": "Camera2D",
 "class": "ZoomCamera",
@@ -32,7 +62,13 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Circle": "",
 "CircleAbstract": "",
+"Drums": "",
 "Main": "",
+"Multisampler": "",
+"NoteSample": "",
+"NoteValueCalculator": "",
+"Orchestra": "",
+"Sampler": "",
 "ZoomCamera": ""
 }
 
@@ -42,12 +78,21 @@ config/name="LudumDae48"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+NoteValue="*res://addons/SimpleSampler/note_value.gd"
+OrchestraInstance="*res://scenes/Orchestra.tscn"
+
 [display]
 
 window/size/width=1920
 window/size/height=1200
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/SimpleSampler/plugin.cfg" )
 
 [physics]
 

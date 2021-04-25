@@ -4,17 +4,24 @@ signal selected
 signal unselected
 signal target
 
+enum CircleStatus {Small, Main, Large}
+
 export(Color) var color: Color
 var child_color: Color
-var child_scale := 0.2
+export(CircleStatus) var status: int = CircleStatus.Small
 
 var zoom_power := 0.0
 
-func add_child_circle(angle: float):
+export(int) var note := 0
+var chord := []
+
+func add_child_circle(angle: float, note: int):
   pass
 func fade_in():
   pass
 func on_child_select(circle):
   pass
 func on_child_unselect():
+  pass
+func init_zoom_momentum(active: bool):
   pass

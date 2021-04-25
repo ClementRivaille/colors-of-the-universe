@@ -7,6 +7,7 @@ export(float) var scale_speed := 0.4
 var zoom_ease := 0.5
 export(bool) var zooming := false
 
+var child_scale := 0.2
 var child_step := 0.02
 var top_step := 2.0
 
@@ -22,8 +23,11 @@ onready var sprite: Sprite = $Sprite
 
 onready var debug_label: Label = $DebugLabel
 
+onready var orchestra: Orchestra = get_node("/root/OrchestraInstance")
+
 func _ready():
   sprite.self_modulate = color
+  chord = orchestra.get_chord(note)
 
   # Pick Children color
   var saturation := 0.3 + randf() * 0.6
@@ -60,23 +64,24 @@ func go_on_top():
     child.disconnect("selected", self, "on_child_select")
     child.disconnect("unselected", self, "on_child_unselect")
     child.disconnect("target", self, "target_child")
-  var successor = active_child
+  var successor := active_child
   emit_signal("is_top", successor)
   if successor.zoom_power == 0.0:
     successor.zoom_power = 1.0;
-    successor.on_child_unselect()
+    successor.init_zoom_momentum(false)
     
 func fill_children():
   var angle := randf() * 2 * PI
-  var nb_child = 3
-  for i in range(0,nb_child):
-    add_child_circle(angle)
-    angle = (angle + (2 * PI) / nb_child)
+  for note in chord:
+    add_child_circle(angle, note)
+    angle = (angle + (2 * PI) / chord.size())
   
 
-func add_child_circle(angle: float):
+func add_child_circle(angle: float, note: int):
   var child: CircleAbstract = circle_scene.instance()
+  child.note = note
   child.color = child_color
+  child.status = CircleStatus.Small if status != CircleStatus.Large else CircleStatus.Main
   child.position.x = cos(angle) * child_position_radius
   child.position.y = sin(angle) * child_position_radius
   child.scale = Vector2.ONE * child_scale
@@ -94,25 +99,47 @@ func fade_in():
   tween.start()
 
 func on_mouse_enter():
+  orchestra.drum_event()
   emit_signal("selected", self)
 func on_mouse_exit():
+  orchestra.drum_event()
   emit_signal("unselected")
   
 func on_child_select(circle: CircleAbstract):
   active_child = circle
   emit_signal("target", active_child)
   
-  if (tween.is_active()):
-    tween.stop(self, "zoom_power")
-  tween.interpolate_property(self, "zoom_power", zoom_power, 1.0,
-    zoom_ease, Tween.TRANS_SINE, Tween.EASE_IN)
-  tween.start()
+  # Zoom momentum  
+  init_zoom_momentum(true)
+  
+  # Play sound
+  if status == CircleStatus.Large && circle.status == CircleStatus.Main:
+    orchestra.play_main_note(circle.note)
+  
 func on_child_unselect():
+  # Zoom momentum
+  init_zoom_momentum(false)
+  
+  if status == CircleStatus.Large:
+    orchestra.release_main()
+    
+func init_zoom_momentum(active: bool):
+  var dest := 1.0 if active else 0.0
+  var zoome_ease := Tween.EASE_IN if active else Tween.EASE_OUT
   if (tween.is_active()):
     tween.stop(self, "zoom_power")
-  tween.interpolate_property(self, "zoom_power", zoom_power, 0.0,
-    zoom_ease, Tween.TRANS_SINE, Tween.EASE_OUT)
+  tween.interpolate_property(self, "zoom_power", zoom_power, dest,
+    zoom_ease, Tween.TRANS_SINE, zoom_ease)
   tween.start()
 
 func target_child(grandchild: Node2D):
   emit_signal("target", grandchild)
+
+func set_top():
+  zooming = true
+  status = CircleStatus.Large
+  for child in children_circle:
+    child.status = CircleStatus.Main
+  orchestra.release_main()
+  if active_child && zoom_power == 1.0:
+    orchestra.play_main_note(active_child.note)
