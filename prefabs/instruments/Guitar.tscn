@@ -1,0 +1,48 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=1]
+[ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=2]
+[ext_resource path="res://assets/samples/guitar/C5.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/samples/guitar/G#5.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/samples/guitar/G#4.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/samples/guitar/E5.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/samples/guitar/C6.wav" type="AudioStream" id=7]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+stream = ExtResource( 3 )
+tone = "C"
+octave = 5
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+stream = ExtResource( 7 )
+tone = "C"
+octave = 6
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+stream = ExtResource( 6 )
+tone = "E"
+octave = 5
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+stream = ExtResource( 5 )
+tone = "G#"
+octave = 4
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+stream = ExtResource( 4 )
+tone = "G#"
+octave = 5
+
+[node name="Guitar" type="AudioStreamPlayer"]
+volume_db = -13.938
+bus = "Instruments"
+script = ExtResource( 2 )
+samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ]
+sustain = 1.3
+release = 0.2
+max_notes = 2

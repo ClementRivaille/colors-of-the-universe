@@ -1,0 +1,48 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=1]
+[ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=2]
+[ext_resource path="res://assets/samples/celesta/c7-soft-PB.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/samples/celesta/g5-soft-PB.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/samples/celesta/c6-soft-PB.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/samples/celesta/g6-soft-PB.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/samples/celesta/e6-soft-PB.wav" type="AudioStream" id=7]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+stream = ExtResource( 5 )
+tone = "C"
+octave = 6
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+stream = ExtResource( 3 )
+tone = "C"
+octave = 7
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+stream = ExtResource( 7 )
+tone = "E"
+octave = 6
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+stream = ExtResource( 4 )
+tone = "G#"
+octave = 5
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+stream = ExtResource( 6 )
+tone = "G#"
+octave = 6
+
+[node name="Celestia" type="AudioStreamPlayer"]
+volume_db = -8.577
+bus = "Instruments"
+script = ExtResource( 2 )
+samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ]
+sustain = 3.0
+release = 0.5
+max_notes = 3

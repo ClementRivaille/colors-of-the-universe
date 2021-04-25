@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/E3_v3.wav-4d283e43f74fe01374cef105803a4b2f.sample"
+
+[deps]
+
+source_file="res://assets/samples/saxophone/E3_v3.wav"
+dest_files=[ "res://.import/E3_v3.wav-4d283e43f74fe01374cef105803a4b2f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

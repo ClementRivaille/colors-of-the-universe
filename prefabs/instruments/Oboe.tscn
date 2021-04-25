@@ -1,0 +1,38 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=1]
+[ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=2]
+[ext_resource path="res://assets/samples/oboe/oboe_C5_05_forte_normal.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/samples/oboe/oboe_E5_05_forte_normal.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/samples/oboe/oboe_G5_05_forte_normal.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/samples/oboe/oboe_A5_05_forte_normal.mp3" type="AudioStream" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+stream = ExtResource( 6 )
+tone = "A"
+octave = 5
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+stream = ExtResource( 3 )
+tone = "C"
+octave = 5
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+stream = ExtResource( 4 )
+tone = "E"
+octave = 5
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+stream = ExtResource( 5 )
+tone = "G"
+octave = 5
+
+[node name="Oboe" type="AudioStreamPlayer"]
+volume_db = 4.289
+bus = "Instruments"
+script = ExtResource( 2 )
+samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]

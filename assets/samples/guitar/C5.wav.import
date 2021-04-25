@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/C5.wav-d31b9ffae34836cdd0c81ec7a6c8b066.sample"
+
+[deps]
+
+source_file="res://assets/samples/guitar/C5.wav"
+dest_files=[ "res://.import/C5.wav-d31b9ffae34836cdd0c81ec7a6c8b066.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

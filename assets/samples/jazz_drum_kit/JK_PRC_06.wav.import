@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/JK_PRC_06.wav-f58f790b08845717db957f1e38d83925.sample"
+
+[deps]
+
+source_file="res://assets/samples/jazz_drum_kit/JK_PRC_06.wav"
+dest_files=[ "res://.import/JK_PRC_06.wav-f58f790b08845717db957f1e38d83925.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

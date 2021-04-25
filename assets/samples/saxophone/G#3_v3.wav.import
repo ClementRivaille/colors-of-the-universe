@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/G#3_v3.wav-79bda9db906bf0fe1c0b297b778488e0.sample"
+
+[deps]
+
+source_file="res://assets/samples/saxophone/G#3_v3.wav"
+dest_files=[ "res://.import/G#3_v3.wav-79bda9db906bf0fe1c0b297b778488e0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

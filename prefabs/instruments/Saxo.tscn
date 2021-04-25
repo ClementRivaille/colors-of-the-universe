@@ -1,0 +1,54 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=1]
+[ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=2]
+[ext_resource path="res://assets/samples/saxophone/E3_v3.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/samples/saxophone/E4_v3.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/samples/saxophone/G#3_v3.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/samples/saxophone/C3_v3.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/samples/saxophone/G#4_v3.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/samples/saxophone/C4_v3.wav" type="AudioStream" id=8]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+stream = ExtResource( 6 )
+tone = "C"
+octave = 3
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+stream = ExtResource( 8 )
+tone = "C"
+octave = 4
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+stream = ExtResource( 3 )
+tone = "E"
+octave = 3
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+stream = ExtResource( 4 )
+tone = "E"
+octave = 4
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+stream = ExtResource( 5 )
+tone = "G#"
+octave = 3
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+stream = ExtResource( 7 )
+tone = "G#"
+octave = 4
+
+[node name="Saxo" type="AudioStreamPlayer"]
+volume_db = -18.227
+bus = "Instruments"
+script = ExtResource( 2 )
+samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ]
+sustain = 0.4
+release = 0.3

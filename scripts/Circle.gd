@@ -82,14 +82,19 @@ func go_on_top():
     
 func fill_children():
   var angle := randf() * 2 * PI
+  var children_instrument := randi()%(Instruments.InstrumentType.size())
+  while children_instrument == instrument:
+    children_instrument = randi()%(Instruments.InstrumentType.size())
+
   for note in chord:
-    add_child_circle(angle, note)
+    add_child_circle(angle, note, children_instrument)
     angle = (angle + (2 * PI) / chord.size())
   
 
-func add_child_circle(angle: float, note: int):
+func add_child_circle(angle: float, note: int, child_instrument: int):
   var child: CircleAbstract = circle_scene.instance()
   child.note = note
+  child.instrument = child_instrument
   child.color = child_color
   child.status = CircleStatus.Small if status != CircleStatus.Large else CircleStatus.Main
   child.position.x = cos(angle) * child_position_radius
@@ -109,10 +114,14 @@ func fade_in():
   tween.start()
 
 func on_mouse_enter():
-  orchestra.drum_event()
+  if status == CircleStatus.Main:
+    orchestra.drum_event()
+  if status != CircleStatus.Large:
+    orchestra.play_instrument(instrument, note, status == CircleStatus.Small)
   emit_signal("selected", self)
 func on_mouse_exit():
-  orchestra.drum_event()
+  if status == CircleStatus.Main:
+    orchestra.drum_event()
   emit_signal("unselected")
   
 func on_child_select(circle: CircleAbstract):

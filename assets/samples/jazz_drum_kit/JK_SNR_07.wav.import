@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/JK_SNR_07.wav-4ac2b10151d50dc455e5487c41f10ea4.sample"
+
+[deps]
+
+source_file="res://assets/samples/jazz_drum_kit/JK_SNR_07.wav"
+dest_files=[ "res://.import/JK_SNR_07.wav-4ac2b10151d50dc455e5487c41f10ea4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

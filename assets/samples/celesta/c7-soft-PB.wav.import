@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/c7-soft-PB.wav-b5f8be7bf71b41c9c4d89f921061e299.sample"
+
+[deps]
+
+source_file="res://assets/samples/celesta/c7-soft-PB.wav"
+dest_files=[ "res://.import/c7-soft-PB.wav-b5f8be7bf71b41c9c4d89f921061e299.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

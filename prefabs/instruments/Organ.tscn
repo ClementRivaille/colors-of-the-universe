@@ -1,0 +1,62 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=1]
+[ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=2]
+[ext_resource path="res://assets/samples/organ/E4L.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/samples/organ/C4L.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/samples/organ/G#4L.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/samples/organ/C5L.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/samples/organ/C6L.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/samples/organ/E5L.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/samples/organ/G#5L.wav" type="AudioStream" id=9]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+stream = ExtResource( 4 )
+tone = "C"
+octave = 4
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+stream = ExtResource( 3 )
+tone = "E"
+octave = 4
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+stream = ExtResource( 5 )
+tone = "G#"
+octave = 4
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+stream = ExtResource( 6 )
+tone = "C"
+octave = 5
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+stream = ExtResource( 8 )
+tone = "E"
+octave = 5
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+stream = ExtResource( 9 )
+tone = "G#"
+octave = 5
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 1 )
+stream = ExtResource( 7 )
+tone = "C"
+octave = 6
+
+[node name="Organ" type="AudioStreamPlayer"]
+volume_db = -10.722
+bus = "Instruments"
+script = ExtResource( 2 )
+samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ]
+sustain = 0.6
+release = 0.2
+max_notes = 2

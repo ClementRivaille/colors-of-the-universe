@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/oboe_G5_05_forte_normal.mp3-d4cca27649ffbfb64fb221aefb7427e2.mp3str"
+
+[deps]
+
+source_file="res://assets/samples/oboe/oboe_G5_05_forte_normal.mp3"
+dest_files=[ "res://.import/oboe_G5_05_forte_normal.mp3-d4cca27649ffbfb64fb221aefb7427e2.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

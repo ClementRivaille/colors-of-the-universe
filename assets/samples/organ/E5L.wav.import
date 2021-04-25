@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/E5L.wav-5d29378cdf8720bb34bfcd3c0f6aaea0.sample"
+
+[deps]
+
+source_file="res://assets/samples/organ/E5L.wav"
+dest_files=[ "res://.import/E5L.wav-5d29378cdf8720bb34bfcd3c0f6aaea0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

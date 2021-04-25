@@ -14,8 +14,9 @@ var zoom_power := 0.0
 
 export(int) var note := 0
 var chord := []
+var instrument : int = Instruments.InstrumentType.PIANO
 
-func add_child_circle(angle: float, note: int):
+func add_child_circle(angle: float, note: int, child_instrument: int):
   pass
 func fade_in():
   pass
