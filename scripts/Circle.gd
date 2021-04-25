@@ -8,8 +8,10 @@ var zoom_ease := 0.5
 export(bool) var zooming := false
 
 var child_scale := 0.2
+
 var child_step := 0.02
 var top_step := 2.0
+var progress_step := 0.6
 
 var child_position_radius := 600.0
 var children_circle: Array = []
@@ -49,6 +51,14 @@ func _ready():
 func _process(delta):
   if zooming && zoom_power > 0.0:
     scale = scale * (1 + (delta * scale_speed * zoom_power))
+    
+    if scale.x > progress_step:
+      var progress_value := (scale.x - progress_step) / (top_step - progress_step)
+      orchestra.update_progress_volume(progress_value)
+      if !orchestra.progressing:
+        orchestra.progressing = true
+        if active_child:
+          orchestra.play_main_note(active_child.note)
     
   if !child_added && global_scale.x >= child_step:
     fill_children()
@@ -113,14 +123,14 @@ func on_child_select(circle: CircleAbstract):
   init_zoom_momentum(true)
   
   # Play sound
-  if status == CircleStatus.Large && circle.status == CircleStatus.Main:
+  if status == CircleStatus.Large && circle.status == CircleStatus.Main && orchestra.progressing:
     orchestra.play_main_note(circle.note)
   
 func on_child_unselect():
   # Zoom momentum
   init_zoom_momentum(false)
   
-  if status == CircleStatus.Large:
+  if status == CircleStatus.Large && orchestra.progressing:
     orchestra.release_main()
     
 func init_zoom_momentum(active: bool):
@@ -141,5 +151,4 @@ func set_top():
   for child in children_circle:
     child.status = CircleStatus.Main
   orchestra.release_main()
-  if active_child && zoom_power == 1.0:
-    orchestra.play_main_note(active_child.note)
+  orchestra.progressing = false
