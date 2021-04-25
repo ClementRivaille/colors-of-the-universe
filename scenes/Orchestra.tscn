@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://prefabs/Instruments.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=4]
@@ -23,7 +23,6 @@
 [ext_resource path="res://assets/samples/jazz_drum_kit/JK_PRC_09.wav" type="AudioStream" id=24]
 [ext_resource path="res://assets/samples/jazz_drum_kit/JK_SNR_07.wav" type="AudioStream" id=25]
 [ext_resource path="res://scripts/Orchestra.gd" type="Script" id=26]
-[ext_resource path="res://prefabs/Cello.tscn" type="PackedScene" id=30]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
@@ -77,8 +76,6 @@ samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4
 attack = 0.3
 release = 2.5
 max_notes = 4
-
-[node name="Cello" parent="." instance=ExtResource( 30 )]
 
 [node name="Drums" type="Node2D" parent="."]
 script = ExtResource( 14 )

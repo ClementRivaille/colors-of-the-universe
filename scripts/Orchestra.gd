@@ -12,7 +12,6 @@ var progressing := false
 
 var progress_amplifier: AudioEffectAmplify
 
-
 func _ready():
   var progress_bus_idx := AudioServer.get_bus_index("Progress")
   progress_amplifier = AudioServer.get_bus_effect(progress_bus_idx, 0)

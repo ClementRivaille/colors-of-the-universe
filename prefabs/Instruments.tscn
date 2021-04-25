@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://prefabs/instruments/Piano.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefabs/instruments/Organ.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://prefabs/instruments/Oboe.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prefabs/instruments/Celestia.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefabs/instruments/Guitar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://prefabs/instruments/Cello.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/Instruments.gd" type="Script" id=35]
 
 [node name="Instruments" type="Node2D"]
@@ -16,3 +17,4 @@ saxo_prefab = ExtResource( 3 )
 oboe_prefab = ExtResource( 4 )
 celestia_prefab = ExtResource( 5 )
 guitar_prefab = ExtResource( 6 )
+cello_prefab = ExtResource( 7 )
