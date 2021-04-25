@@ -3,6 +3,8 @@ class_name Circle
 signal is_top
 
 onready var circle_scene := load("res://prefabs/Circle.tscn")
+onready var star_scene := preload("res://prefabs/Star.tscn")
+
 export(float) var scale_speed := 0.4
 var zoom_ease := 0.5
 export(bool) var zooming := false
@@ -22,6 +24,7 @@ var on_top := false
 onready var tween: Tween = $Tween
 onready var area: Area2D = $Area2D
 onready var sprite: Sprite = $Sprite
+var star: Star
 
 onready var debug_label: Label = $DebugLabel
 
@@ -38,15 +41,18 @@ func _ready():
   if randf() < 0.2:
     child_hue = fmod(abs(color.h + 0.15), 1.0)
   child_color = Color.from_hsv(child_hue, 0.4, 0.4 + randf() * 0.3)
-#  var hue_diff := 0.1 + randf() * 0.1
-#  if randf() > 0.5:
-#    hue_diff = -hue_diff
-#  var child_hue := fmod(abs(color.h + hue_diff), 1.0)
-#  child_color = Color.from_hsv(child_hue, 0.5 + randf()*0.3, 0.7 + randf() * 0.3)
 
   # Area detection
   area.connect("mouse_entered", self, "on_mouse_enter")
   area.connect("mouse_exited", self, "on_mouse_exit")
+  
+  # Add star
+  if clue || final:
+    star = star_scene.instance()
+    star.success = final
+    add_child(star)
+  
+  debug_label.text = str(melody_position)
   
 func _process(delta):
   if zooming && zoom_power > 0.0:
@@ -95,18 +101,29 @@ func add_child_circle(angle: float, note: int, child_instrument: int):
   var child: CircleAbstract = circle_scene.instance()
   child.note = note
   child.instrument = child_instrument
+    
   child.color = child_color
   child.status = CircleStatus.Small if status != CircleStatus.Large else CircleStatus.Main
   child.position.x = cos(angle) * child_position_radius
   child.position.y = sin(angle) * child_position_radius
   child.scale = Vector2.ONE * child_scale
-  child.modulate.a = 0.0
+  
+  child.melody_position = (-1 if !orchestra.validate_path(note, melody_position + 1)
+    else (melody_position + 1)%orchestra.melody_size)
+  if child.melody_position == orchestra.melody_size - 1:
+    child.final = true
+    child.color.h = fmod(abs(color.h + 0.5), 1.0)
+  elif orchestra.is_melody_end(note):
+    child.clue = true
+
   child.connect("selected", self, "on_child_select")
   child.connect("unselected", self, "on_child_unselect")
   child.connect("target", self, "target_child")
+
+  child.modulate.a = 0.0
   add_child(child)
   child.fade_in()
-  children_circle.push_front(child)
+  children_circle.push_back(child)
 
 func fade_in():
   tween.interpolate_property(self, 'modulate', Color.transparent, Color.white,
@@ -161,3 +178,5 @@ func set_top():
     child.status = CircleStatus.Main
   orchestra.release_main()
   orchestra.progressing = false
+  if (clue || final) && star:
+    star.active = true

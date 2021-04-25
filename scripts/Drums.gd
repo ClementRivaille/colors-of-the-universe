@@ -8,7 +8,7 @@ var index := 0
 
 func _ready():
   for player in get_children():
-    players.push_front(player)
+    players.push_back(player)
     
 func play_rand():
   var sound: AudioStream = sounds[randi()%sounds.size()]

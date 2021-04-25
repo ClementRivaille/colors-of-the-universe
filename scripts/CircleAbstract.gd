@@ -16,6 +16,10 @@ export(int) var note := 0
 var chord := []
 var instrument : int = Instruments.InstrumentType.PIANO
 
+var melody_position := -1
+var final := false
+var clue := false
+
 func add_child_circle(angle: float, note: int, child_instrument: int):
   pass
 func fade_in():
