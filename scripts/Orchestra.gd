@@ -8,7 +8,10 @@ onready var main_instruments: Instruments = $MainInstruments
 onready var small_instruments: Instruments = $SmallInstruments
 onready var melody_player: MelodyPlayer = $MelodyPlayer
 
+onready var note_calculator: NoteValueCalculator = get_node("/root/NoteValue")
+
 var keys := ['C', 'D', 'E', 'F', 'G', 'A', 'Bb']
+var mixolydian := [2,2,1,2,2,1]
 
 var progressing := false
 
@@ -93,3 +96,15 @@ func play_chord():
 
 func on_melody_finished():
   emit_signal("stop_playing_melody")
+  
+func transpose(idx: int):
+  var base: String = keys[idx]
+  var new_notes := [base]
+  
+  var note_value := note_calculator.get_note_value(base)
+  for interval in mixolydian:
+    note_value += interval
+    new_notes.push_back(note_calculator.get_note_name(note_value))
+  
+  keys = new_notes
+  print(keys)

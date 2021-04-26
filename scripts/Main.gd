@@ -29,6 +29,7 @@ func switch_root_circle(circle: Circle):
   
   orchestra.update_position(circle.note)
   if orchestra.melody_position == orchestra.melody_size - 1:
+    orchestra.transpose(circle.note)
     orchestra.generate_melody()
   
   disconnect_circle(root_circle)
