@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/c4_p_rr1_cnd.wav-59f0930f68140cfaac01c5a3eae34e11.sample"
+
+[deps]
+
+source_file="res://assets/samples/saxo/c4_p_rr1_cnd.wav"
+dest_files=[ "res://.import/c4_p_rr1_cnd.wav-59f0930f68140cfaac01c5a3eae34e11.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -14,7 +14,7 @@ export(PackedScene) var cello_prefab: PackedScene
 var instruments := {}
 var octaves := {
   InstrumentType.PIANO: 4,
-  InstrumentType.SAXO: 4,
+  InstrumentType.SAXO: 3,
   InstrumentType.OBOE: 5,
   InstrumentType.CELESTIA: 6,
   InstrumentType.ORGAN: 4,

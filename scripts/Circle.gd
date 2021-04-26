@@ -43,7 +43,7 @@ func init_self():
   var value := 1.0 - saturation + randf() * 0.2
   var child_hue := color.h
   if melody_position > 0:
-    child_hue = fmod(abs(color.h + 0.04), 1.0)
+    child_hue = fmod(abs(color.h + 0.05), 1.0)
   child_color = Color.from_hsv(child_hue, 0.4, 0.4 + randf() * 0.3)
 
   # Area detection

@@ -1,0 +1,40 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=1]
+[ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=2]
+[ext_resource path="res://assets/samples/saxo/a3_p_rr1_cnd.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/samples/saxo/e3_p_rr1_cnd.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/samples/saxo/c3_p_rr1_cnd.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/samples/saxo/c4_p_rr1_cnd.wav" type="AudioStream" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+stream = ExtResource( 3 )
+tone = "A"
+octave = 3
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+stream = ExtResource( 5 )
+tone = "C"
+octave = 3
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+stream = ExtResource( 6 )
+tone = "C"
+octave = 4
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+stream = ExtResource( 4 )
+tone = "E"
+octave = 3
+
+[node name="Saxo" type="AudioStreamPlayer"]
+volume_db = -8.0
+bus = "Instruments"
+script = ExtResource( 1 )
+samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
+sustain = 0.8
+release = 0.4

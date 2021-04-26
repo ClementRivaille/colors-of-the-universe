@@ -39,7 +39,7 @@ tone = "G#"
 octave = 6
 
 [node name="Celestia" type="AudioStreamPlayer"]
-volume_db = -8.577
+volume_db = -7.0
 bus = "Instruments"
 script = ExtResource( 2 )
 samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ]
