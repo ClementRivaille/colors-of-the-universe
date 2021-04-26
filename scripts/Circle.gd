@@ -31,6 +31,9 @@ onready var debug_label: Label = $DebugLabel
 onready var orchestra: Orchestra = get_node("/root/OrchestraInstance")
 
 func _ready():
+  init_self()
+  
+func init_self():
   sprite.self_modulate = color
   chord = orchestra.get_chord(note, clue)
 

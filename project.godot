@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Instruments.gd"
 }, {
+"base": "Circle",
+"class": "Intro",
+"language": "GDScript",
+"path": "res://scripts/Intro.gd"
+}, {
 "base": "Node2D",
 "class": "Main",
 "language": "GDScript",
@@ -79,6 +84,7 @@ _global_script_class_icons={
 "CircleAbstract": "",
 "Drums": "",
 "Instruments": "",
+"Intro": "",
 "Main": "",
 "MelodyPlayer": "",
 "Multisampler": "",

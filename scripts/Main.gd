@@ -1,7 +1,7 @@
 extends Node2D
 class_name Main
 
-onready var root_circle: Circle = $Circle
+onready var root_circle: Circle = $Intro
 onready var camera: ZoomCamera = $Camera2D
 
 onready var orchestra: Orchestra = get_node("/root/OrchestraInstance")
