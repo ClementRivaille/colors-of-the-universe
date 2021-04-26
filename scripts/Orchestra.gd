@@ -17,9 +17,10 @@ var progressing := false
 
 var progress_amplifier: AudioEffectAmplify
 
-var melody_size := 7
+var melody_size := 0
 var melody := []
 var melody_position := -1
+var melodies := [5,6,7]
 
 func _ready():
   var progress_bus_idx := AudioServer.get_bus_index("Progress")
@@ -65,6 +66,9 @@ func play_instrument(type: int, note_idx: int, small: bool):
     main_instruments.play_instrument(type, note)
 
 func generate_melody():
+  var melody_idx = melodies.find(melody_size)
+  melody_size = melodies[0] if melody_idx == -1 else melodies[(melody_idx+1)%melodies.size()]
+  
   var last_note := 1 + randi()%(keys.size() - 1)
   melody = [last_note]
   while melody.size() < melody_size:
@@ -108,3 +112,6 @@ func transpose(idx: int):
   
   keys = new_notes
   print(keys)
+
+func is_last_melody():
+  return melodies.find(melody_size) == melodies.size() - 1

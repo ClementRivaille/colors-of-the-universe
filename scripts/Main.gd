@@ -9,6 +9,7 @@ onready var orchestra: Orchestra = get_node("/root/OrchestraInstance")
 var thanks_scene: PackedScene = preload("res://prefabs/Thanks.tscn")
 
 var thanks_displayed := false
+var last_melody := false
 
 func _ready():
   randomize()
@@ -29,6 +30,7 @@ func switch_root_circle(circle: Circle):
   
   orchestra.update_position(circle.note)
   if orchestra.melody_position == orchestra.melody_size - 1:
+    last_melody = orchestra.is_last_melody()
     orchestra.transpose(circle.note)
     orchestra.generate_melody()
   
@@ -40,7 +42,7 @@ func change_target(node: Node2D):
   camera.target = node
 
 func on_validate_end():
-  if !thanks_displayed:
+  if !thanks_displayed && last_melody:
     var thanks: Label = thanks_scene.instance()
     root_circle.add_child(thanks)
     thanks_displayed = true
