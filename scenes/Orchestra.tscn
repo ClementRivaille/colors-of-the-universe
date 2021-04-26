@@ -123,7 +123,7 @@ script = ExtResource( 26 )
 bus = "Progress"
 script = ExtResource( 4 )
 samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ]
-attack = 0.3
+attack = 0.2
 release = 2.5
 max_notes = 4
 

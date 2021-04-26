@@ -43,6 +43,7 @@ func get_chord(index: int, start := false):
   return notes
 
 func play_main_note(index: int):
+  string.release()
   var note: String = keys[index]
   string.play_note(note, 4)
   string.play_note(note, 3)
