@@ -1,5 +1,6 @@
 extends Node2D
 class_name Star
+signal collected
 
 export(Color) var clue_color: Color
 export(Color) var success_color: Color
@@ -41,6 +42,7 @@ func play_success():
   playing = true
   orchestra.play_chord()
   animation.play("Collect")
+  emit_signal("collected")
   
 func on_melody_stopped():
   if playing:

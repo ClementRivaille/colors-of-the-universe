@@ -1,6 +1,7 @@
 extends CircleAbstract
 class_name Circle
 signal is_top
+signal end_validated
 
 onready var circle_scene := load("res://prefabs/Circle.tscn")
 onready var star_scene := preload("res://prefabs/Star.tscn")
@@ -53,6 +54,7 @@ func init_self():
   if clue || final:
     star = star_scene.instance()
     star.success = final
+    star.connect("collected", self, "on_star_collected")
     add_child(star)
   
   # debug_label.text = str(note)
@@ -189,3 +191,6 @@ func set_top():
   orchestra.progressing = false
   if (clue || final) && star:
     star.active = true
+
+func on_star_collected():
+  emit_signal("end_validated")
