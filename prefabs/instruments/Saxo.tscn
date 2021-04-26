@@ -46,7 +46,7 @@ tone = "G#"
 octave = 4
 
 [node name="Saxo" type="AudioStreamPlayer"]
-volume_db = -18.227
+volume_db = -13.0
 bus = "Instruments"
 script = ExtResource( 2 )
 samples = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ]

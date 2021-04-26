@@ -25,13 +25,16 @@ func _ready():
 func drum_event():
   drums.play_rand()
   
-func get_chord(index: int):
+func get_chord(index: int, start := false):
   var notes := []
   for i in range(0, 3):
     var note = (index + i * 2)%keys.size()
     notes.push_back(note)
     
-  if index%2 == 0 && randf() > 0.4:
+  if start && !notes.has(melody[0]):
+    notes.push_back(melody[0])
+  
+  if notes.size() < 4 && (index%2 != 0 || randf() > 0.4):
     var extra_note = randi()%keys.size()
     while notes.has(extra_note):
       extra_note = randi()%keys.size()

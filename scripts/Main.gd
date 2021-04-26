@@ -27,7 +27,6 @@ func switch_root_circle(circle: Circle):
   
   orchestra.update_position(circle.note)
   if orchestra.melody_position == orchestra.melody_size - 1:
-    print("YOU WIN!!")
     orchestra.generate_melody()
   
   root_circle.queue_free()

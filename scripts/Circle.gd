@@ -32,14 +32,14 @@ onready var orchestra: Orchestra = get_node("/root/OrchestraInstance")
 
 func _ready():
   sprite.self_modulate = color
-  chord = orchestra.get_chord(note)
+  chord = orchestra.get_chord(note, clue)
 
   # Pick Children color
   var saturation := 0.3 + randf() * 0.6
   var value := 1.0 - saturation + randf() * 0.2
   var child_hue := color.h
-  if randf() < 0.2:
-    child_hue = fmod(abs(color.h + 0.15), 1.0)
+  if melody_position > 0:
+    child_hue = fmod(abs(color.h + 0.04), 1.0)
   child_color = Color.from_hsv(child_hue, 0.4, 0.4 + randf() * 0.3)
 
   # Area detection
@@ -52,7 +52,7 @@ func _ready():
     star.success = final
     add_child(star)
   
-  # debug_label.text = str(melody_position)
+  # debug_label.text = str(note)
   
 func _process(delta):
   if zooming && zoom_power > 0.0:
@@ -109,7 +109,9 @@ func add_child_circle(angle: float, note: int, child_instrument: int):
   child.scale = Vector2.ONE * child_scale
   
   child.melody_position = -1
-  if orchestra.validate_path(note, melody_position + 1):
+  if final:
+    child.melody_position = -2
+  elif orchestra.validate_path(note, melody_position + 1):
     child.melody_position = (melody_position + 1)%orchestra.melody_size
   elif orchestra.validate_path(note, 0):
     child.melody_position = 0
@@ -117,7 +119,7 @@ func add_child_circle(angle: float, note: int, child_instrument: int):
   if child.melody_position == orchestra.melody_size - 1:
     child.final = true
     child.color.h = fmod(abs(color.h + 0.5), 1.0)
-  elif orchestra.is_melody_end(note):
+  elif !final && melody_position >= -1 && orchestra.is_melody_end(note):
     child.clue = true
 
   child.connect("selected", self, "on_child_select")
