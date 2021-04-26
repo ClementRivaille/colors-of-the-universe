@@ -43,3 +43,4 @@ func play_chord(chord: Array):
     timer.start()
     yield(timer, "timeout")
   play_note(chord[0], 1)
+  playing = false

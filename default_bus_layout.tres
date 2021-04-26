@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=7 format=2]
+[gd_resource type="AudioBusLayout" load_steps=8 format=2]
 
 [sub_resource type="AudioEffectReverb" id=1]
 resource_name = "Reverb"
@@ -37,6 +37,14 @@ spread = 0.71
 hipass = 0.39
 dry = 0.87
 wet = 0.39
+
+[sub_resource type="AudioEffectDelay" id=8]
+resource_name = "Delay"
+dry = 0.63
+tap1/delay_ms = 150.0
+tap1/level_db = -8.0
+tap2/delay_ms = 300.0
+tap2/level_db = -16.0
 
 [sub_resource type="AudioEffectEQ" id=7]
 resource_name = "EQ"
@@ -82,9 +90,11 @@ bus/5/name = "Melody"
 bus/5/solo = false
 bus/5/mute = false
 bus/5/bypass_fx = false
-bus/5/volume_db = -2.70802
+bus/5/volume_db = -8.00903
 bus/5/send = "Master"
 bus/5/effect/0/effect = SubResource( 6 )
 bus/5/effect/0/enabled = true
-bus/5/effect/1/effect = SubResource( 7 )
+bus/5/effect/1/effect = SubResource( 8 )
 bus/5/effect/1/enabled = true
+bus/5/effect/2/effect = SubResource( 7 )
+bus/5/effect/2/enabled = true

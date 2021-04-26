@@ -12,8 +12,7 @@ var thanks_displayed := false
 
 func _ready():
   randomize()
-  root_circle.connect("is_top", self, "switch_root_circle")
-  root_circle.connect("target", self, "change_target")
+  connect_circle(root_circle)
   root_circle.set_top()
   camera.target = root_circle
   orchestra.generate_melody()
@@ -25,16 +24,15 @@ func switch_root_circle(circle: Circle):
   root_circle.remove_child(circle)
   add_child(circle)
   circle.set_owner(self)
-  circle.connect("is_top", self, "switch_root_circle")
-  circle.connect("target", self, "change_target")
-  circle.connect("end_validated", self, "on_validate_end")
+  connect_circle(circle)
   circle.set_top()
   
   orchestra.update_position(circle.note)
   if orchestra.melody_position == orchestra.melody_size - 1:
     orchestra.generate_melody()
   
-  root_circle.queue_free()
+  disconnect_circle(root_circle)
+  root_circle.fade_out()
   root_circle = circle
 
 func change_target(node: Node2D):
@@ -43,3 +41,13 @@ func change_target(node: Node2D):
 func on_validate_end():
   var thanks: Label = thanks_scene.instance()
   root_circle.add_child(thanks)
+
+func connect_circle(circle: Circle):
+  circle.connect("is_top", self, "switch_root_circle")
+  circle.connect("target", self, "change_target")
+  circle.connect("end_validated", self, "on_validate_end")
+
+func disconnect_circle(circle: Circle):
+  circle.disconnect("is_top", self, "switch_root_circle")
+  circle.disconnect("target", self, "change_target")
+  circle.disconnect("end_validated", self, "on_validate_end")

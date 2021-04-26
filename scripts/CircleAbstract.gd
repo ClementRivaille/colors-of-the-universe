@@ -24,6 +24,8 @@ func add_child_circle(angle: float, note: int, child_instrument: int):
   pass
 func fade_in():
   pass
+func fade_out():
+  pass
 func on_child_select(circle):
   pass
 func on_child_unselect():

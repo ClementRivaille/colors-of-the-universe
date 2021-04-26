@@ -63,7 +63,7 @@ func _process(delta):
   if zooming && zoom_power > 0.0:
     scale = scale * (1 + (delta * scale_speed * zoom_power))
     
-    if scale.x > progress_step:
+    if !on_top && scale.x > progress_step:
       var progress_value := (scale.x - progress_step) / (top_step - progress_step)
       orchestra.update_progress_volume(progress_value)
       if !orchestra.progressing:
@@ -141,6 +141,18 @@ func fade_in():
     0.5, Tween.TRANS_SINE, Tween.EASE_IN)
   tween.start()
 
+func fade_out():
+  tween.remove_all()
+  sprite.self_modulate = Color.transparent
+  var shadow: Sprite = $Shadow
+  shadow.self_modulate = Color.transparent
+  zoom_power = 0.3
+  tween.interpolate_property(self, 'modulate', Color.white, Color.transparent,
+    0.3, Tween.TRANS_SINE, Tween.EASE_IN)
+  tween.start()
+  yield(tween, "tween_all_completed")
+  queue_free()
+
 func on_mouse_enter():
   if status == CircleStatus.Main:
     orchestra.drum_event()
@@ -171,10 +183,12 @@ func on_child_unselect():
     orchestra.release_main()
     
 func init_zoom_momentum(active: bool):
+  if on_top:
+    return
   var dest := 1.0 if active else 0.0
   var zoome_ease := Tween.EASE_IN if active else Tween.EASE_OUT
   if (tween.is_active()):
-    tween.stop(self, "zoom_power")
+    tween.remove(self, "zoom_power")
   tween.interpolate_property(self, "zoom_power", zoom_power, dest,
     zoom_ease, Tween.TRANS_SINE, zoom_ease)
   tween.start()

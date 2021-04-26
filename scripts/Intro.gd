@@ -29,6 +29,14 @@ func init_self():
   children_circle = [circle]
   active_child = circle
   
+func fade_out():
+  tween.remove_all()
+  tween.interpolate_property(self, 'modulate', Color.white, Color.transparent,
+    0.3, Tween.TRANS_SINE, Tween.EASE_IN)
+  tween.start()
+  yield(tween, "tween_all_completed")
+  queue_free()
+  
 func fill_children():
   pass
   
