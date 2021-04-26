@@ -111,7 +111,6 @@ func transpose(idx: int):
     new_notes.push_back(note_calculator.get_note_name(note_value))
   
   keys = new_notes
-  print(keys)
 
 func is_last_melody():
   return melodies.find(melody_size) == melodies.size() - 1
