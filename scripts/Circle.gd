@@ -13,7 +13,7 @@ export(bool) var zooming := false
 var child_scale := 0.2
 
 var child_step := 0.02
-var top_step := 2.1
+var top_step := 2.0
 var progress_step := 0.6
 
 var child_position_radius := 600.0

@@ -9,7 +9,6 @@ var clue_displayed := false
 
 func _process(_delta: float):
   if !clue_displayed && scale.x > clue_step:
-    print('FU')
     tween.interpolate_property(clue_label, "modulate", Color.transparent, Color(1.0,1.0,1.0,0.7),
       1.0, Tween.TRANS_SINE, Tween.EASE_OUT)
     tween.start()

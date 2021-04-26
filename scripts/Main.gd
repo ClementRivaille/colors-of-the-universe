@@ -40,8 +40,10 @@ func change_target(node: Node2D):
   camera.target = node
 
 func on_validate_end():
-  var thanks: Label = thanks_scene.instance()
-  root_circle.add_child(thanks)
+  if !thanks_displayed:
+    var thanks: Label = thanks_scene.instance()
+    root_circle.add_child(thanks)
+    thanks_displayed = true
 
 func connect_circle(circle: Circle):
   circle.connect("is_top", self, "switch_root_circle")
