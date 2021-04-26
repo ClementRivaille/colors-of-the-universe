@@ -62,3 +62,8 @@ func on_activate():
 func on_animation_finished(name: String):
   if name == "Collect":
     queue_free()
+    
+func fade_in():
+  tween.interpolate_property(self, "modulate", Color.transparent, Color.white,
+    0.5, Tween.TRANS_SINE, Tween.EASE_IN)
+  tween.start()

@@ -13,8 +13,8 @@ export(bool) var zooming := false
 var child_scale := 0.2
 
 var child_step := 0.02
-var top_step := 2.0
-var progress_step := 0.5
+var top_step := 2.1
+var progress_step := 0.6
 
 var child_position_radius := 600.0
 var children_circle: Array = []
@@ -55,6 +55,7 @@ func init_self():
     star = star_scene.instance()
     star.success = final
     star.connect("collected", self, "on_star_collected")
+    star.modulate = Color.transparent
     add_child(star)
   
   # debug_label.text = str(note)
@@ -100,6 +101,8 @@ func fill_children():
   for note in chord:
     add_child_circle(angle, note, children_instrument)
     angle = (angle + (2 * PI) / chord.size())
+  if star:
+    star.fade_in()
   
 
 func add_child_circle(angle: float, note: int, child_instrument: int):
@@ -148,7 +151,7 @@ func fade_out():
   shadow.self_modulate = Color.transparent
   zoom_power = 0.3
   tween.interpolate_property(self, 'modulate', Color.white, Color.transparent,
-    0.3, Tween.TRANS_SINE, Tween.EASE_IN)
+    0.2, Tween.TRANS_SINE, Tween.EASE_IN)
   tween.start()
   yield(tween, "tween_all_completed")
   queue_free()
