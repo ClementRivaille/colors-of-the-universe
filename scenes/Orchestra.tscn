@@ -1,8 +1,11 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://prefabs/Instruments.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/samples/viola/5_C_1-PB.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/samples/viola/4_C_1-PB.wav" type="AudioStream" id=3]
 [ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=4]
 [ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=5]
+[ext_resource path="res://assets/samples/viola/4_A_1-PB.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/samples/strings/Gs3.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/samples/strings/C3.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/samples/strings/C4.ogg" type="AudioStream" id=9]
@@ -23,6 +26,11 @@
 [ext_resource path="res://assets/samples/jazz_drum_kit/JK_PRC_09.wav" type="AudioStream" id=24]
 [ext_resource path="res://assets/samples/jazz_drum_kit/JK_SNR_07.wav" type="AudioStream" id=25]
 [ext_resource path="res://scripts/Orchestra.gd" type="Script" id=26]
+[ext_resource path="res://assets/samples/viola/4_Eb_1-PB.wav" type="AudioStream" id=27]
+[ext_resource path="res://assets/samples/glock/glock_medium_G5-PB.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/samples/glock/glock_medium_C6-PB.wav" type="AudioStream" id=29]
+[ext_resource path="res://assets/samples/glock/glock_medium_C5-PB.wav" type="AudioStream" id=30]
+[ext_resource path="res://scripts/MelodyPlayer.gd" type="Script" id=31]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
@@ -66,6 +74,48 @@ stream = ExtResource( 13 )
 tone = "G#"
 octave = 4
 
+[sub_resource type="Resource" id=8]
+script = ExtResource( 5 )
+stream = ExtResource( 6 )
+tone = "A"
+octave = 4
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+stream = ExtResource( 3 )
+tone = "C"
+octave = 4
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 5 )
+stream = ExtResource( 27 )
+tone = "D#"
+octave = 4
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 5 )
+stream = ExtResource( 2 )
+tone = "C"
+octave = 5
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 5 )
+stream = ExtResource( 30 )
+tone = "C"
+octave = 5
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 5 )
+stream = ExtResource( 29 )
+tone = "C"
+octave = 6
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 5 )
+stream = ExtResource( 28 )
+tone = "G"
+octave = 5
+
 [node name="Orchestra" type="Node2D"]
 script = ExtResource( 26 )
 
@@ -100,3 +150,23 @@ bus = "Drums"
 
 [node name="SmallInstruments" parent="." instance=ExtResource( 1 )]
 bus = "Small"
+
+[node name="MelodyPlayer" type="Node2D" parent="."]
+script = ExtResource( 31 )
+
+[node name="Viola" type="AudioStreamPlayer" parent="MelodyPlayer"]
+bus = "Melody"
+script = ExtResource( 4 )
+samples = [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ]
+max_notes = 5
+
+[node name="Glock" type="AudioStreamPlayer" parent="MelodyPlayer"]
+bus = "Melody"
+script = ExtResource( 4 )
+samples = [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ]
+max_notes = 5
+
+[node name="Timer" type="Timer" parent="MelodyPlayer"]
+one_shot = true
+
+[connection signal="melody_finished" from="MelodyPlayer" to="." method="on_melody_finished"]

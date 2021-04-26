@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=2]
+[gd_resource type="AudioBusLayout" load_steps=8 format=2]
 
 [sub_resource type="AudioEffectReverb" id=1]
 resource_name = "Reverb"
@@ -28,8 +28,32 @@ resource_name = "LowPassFilter"
 cutoff_hz = 1600.0
 resonance = 0.7
 
+[sub_resource type="AudioEffectDelay" id=5]
+resource_name = "Delay"
+dry = 0.79
+tap1/delay_ms = 200.0
+tap1/level_db = -8.0
+tap2/delay_ms = 400.0
+tap2/level_db = -16.0
+
+[sub_resource type="AudioEffectReverb" id=6]
+resource_name = "Reverb"
+predelay_feedback = 0.36
+room_size = 0.55
+damping = 0.29
+spread = 0.71
+hipass = 0.39
+dry = 0.87
+wet = 0.39
+
+[sub_resource type="AudioEffectEQ" id=7]
+resource_name = "EQ"
+band_db/32_hz = 7.6
+band_db/100_hz = 3.4
+band_db/320_hz = 3.4
+band_db/1000_hz = 1.7
+
 [resource]
-bus/0/mute = true
 bus/1/name = "Drums"
 bus/1/solo = false
 bus/1/mute = false
@@ -62,9 +86,15 @@ bus/4/effect/0/effect = SubResource( 3 )
 bus/4/effect/0/enabled = true
 bus/4/effect/1/effect = SubResource( 4 )
 bus/4/effect/1/enabled = true
-bus/5/name = "Bass"
+bus/5/name = "Melody"
 bus/5/solo = false
 bus/5/mute = false
 bus/5/bypass_fx = false
-bus/5/volume_db = 0.0
+bus/5/volume_db = -2.70802
 bus/5/send = "Master"
+bus/5/effect/0/effect = SubResource( 5 )
+bus/5/effect/0/enabled = true
+bus/5/effect/1/effect = SubResource( 6 )
+bus/5/effect/1/enabled = true
+bus/5/effect/2/effect = SubResource( 7 )
+bus/5/effect/2/enabled = true

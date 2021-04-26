@@ -1,10 +1,12 @@
 extends Node2D
 class_name Orchestra
+signal stop_playing_melody
 
 onready var drums: Drums = $Drums
 onready var string: Multisampler = $String
 onready var main_instruments: Instruments = $MainInstruments
 onready var small_instruments: Instruments = $SmallInstruments
+onready var melody_player: MelodyPlayer = $MelodyPlayer
 
 var keys := ['C', 'D', 'E', 'F', 'G', 'A', 'Bb']
 
@@ -67,10 +69,23 @@ func update_position(note_index):
   if melody[(melody_position + 1)%melody.size()] == note_index:
     melody_position += 1
   else:
-    melody_position = -1
+    melody_position = -1 if note_index != melody[0] else 0
 
 func validate_path(note_idx: int, pos: int):
   return pos < melody.size() && melody[pos] == note_idx
   
 func is_melody_end(note_idx: int):
   return melody.size() > 0 && melody[melody.size() - 1] == note_idx
+  
+func play_melody():
+  var melody_notes := []
+  for idx in melody:
+    melody_notes.push_back(keys[idx])
+  melody_player.play_melody(melody_notes)
+  
+func play_chord():
+  var chord_notes := [keys[0], keys[2], keys[4], keys[6]]
+  melody_player.play_chord(chord_notes)
+
+func on_melody_finished():
+  emit_signal("stop_playing_melody")

@@ -7,6 +7,7 @@ onready var camera: ZoomCamera = $Camera2D
 onready var orchestra: Orchestra = get_node("/root/OrchestraInstance")
 
 func _ready():
+  randomize()
   root_circle.connect("is_top", self, "switch_root_circle")
   root_circle.connect("target", self, "change_target")
   root_circle.set_top()

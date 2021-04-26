@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/glock_medium_C6-PB.wav-3d65dbd761dbd65861e34d363c153c4e.sample"
+
+[deps]
+
+source_file="res://assets/samples/glock/glock_medium_C6-PB.wav"
+dest_files=[ "res://.import/glock_medium_C6-PB.wav-3d65dbd761dbd65861e34d363c153c4e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

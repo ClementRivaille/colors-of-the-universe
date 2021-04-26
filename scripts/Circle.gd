@@ -52,7 +52,7 @@ func _ready():
     star.success = final
     add_child(star)
   
-  debug_label.text = str(melody_position)
+  # debug_label.text = str(melody_position)
   
 func _process(delta):
   if zooming && zoom_power > 0.0:
@@ -108,8 +108,12 @@ func add_child_circle(angle: float, note: int, child_instrument: int):
   child.position.y = sin(angle) * child_position_radius
   child.scale = Vector2.ONE * child_scale
   
-  child.melody_position = (-1 if !orchestra.validate_path(note, melody_position + 1)
-    else (melody_position + 1)%orchestra.melody_size)
+  child.melody_position = -1
+  if orchestra.validate_path(note, melody_position + 1):
+    child.melody_position = (melody_position + 1)%orchestra.melody_size
+  elif orchestra.validate_path(note, 0):
+    child.melody_position = 0
+  
   if child.melody_position == orchestra.melody_size - 1:
     child.final = true
     child.color.h = fmod(abs(color.h + 0.5), 1.0)
