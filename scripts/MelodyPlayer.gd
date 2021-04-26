@@ -21,6 +21,7 @@ func play_melody(melody: Array):
   # If already playing, stop the other instance
   if playing:
     interrupt = true
+  playing = true
   for note in melody:
     play_note(note)
     timer.start()
@@ -36,6 +37,7 @@ func play_chord(chord: Array):
   timer.wait_time = chord_delay
   if playing:
     interrupt = true
+  playing = true
   for note in chord:
     play_note(note)
     timer.start()
