@@ -151,6 +151,9 @@ bus = "Drums"
 [node name="SmallInstruments" parent="." instance=ExtResource( 1 )]
 bus = "Small"
 
+[node name="BigInstruments" parent="." instance=ExtResource( 1 )]
+bus = "Big"
+
 [node name="MelodyPlayer" type="Node2D" parent="."]
 script = ExtResource( 31 )
 

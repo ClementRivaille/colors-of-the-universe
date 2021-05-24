@@ -6,6 +6,7 @@ onready var drums: Drums = $Drums
 onready var string: Multisampler = $String
 onready var main_instruments: Instruments = $MainInstruments
 onready var small_instruments: Instruments = $SmallInstruments
+onready var big_instruments: Instruments = $BigInstruments
 onready var melody_player: MelodyPlayer = $MelodyPlayer
 
 onready var note_calculator: NoteValueCalculator = get_node("/root/NoteValue")
@@ -21,6 +22,8 @@ var melody_size := 0
 var melody := []
 var melody_position := -1
 var melodies := [5,6,7]
+
+enum Room { SMALL, BIG }
 
 func _ready():
   var progress_bus_idx := AudioServer.get_bus_index("Progress")
@@ -58,10 +61,12 @@ func release_main():
 func update_progress_volume(value: float):
   progress_amplifier.volume_db = lerp(-30.0, 0.0, value)
   
-func play_instrument(type: int, note_idx: int, small: bool):
+func play_instrument(type: int, note_idx: int, room: int = -1):
   var note: String = keys[note_idx]
-  if small:
+  if room == Room.SMALL:
     small_instruments.play_instrument(type, note)
+  elif room == Room.BIG:
+    big_instruments.play_instrument(type, note)
   else:
     main_instruments.play_instrument(type, note)
 

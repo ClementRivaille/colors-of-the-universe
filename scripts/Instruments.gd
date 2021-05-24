@@ -22,7 +22,7 @@ var octaves := {
   InstrumentType.CELLO: 2
  }
 
-export(String, "Instruments", "Small") var bus := "Instruments"
+export(String, "Instruments", "Small", "Big") var bus := "Instruments"
 
 func _ready():
   instantiate_instrument(InstrumentType.ORGAN, organ_prefab)

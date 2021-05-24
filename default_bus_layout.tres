@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=7 format=2]
+[gd_resource type="AudioBusLayout" load_steps=10 format=2]
 
 [sub_resource type="AudioEffectReverb" id=1]
 resource_name = "Reverb"
@@ -27,6 +27,33 @@ wet = 0.61
 resource_name = "LowPassFilter"
 cutoff_hz = 1600.0
 resonance = 0.7
+
+[sub_resource type="AudioEffectLowPassFilter" id=10]
+resource_name = "LowPassFilter"
+cutoff_hz = 800.0
+resonance = 1.0
+
+[sub_resource type="AudioEffectReverb" id=7]
+resource_name = "Reverb"
+predelay_msec = 100.0
+room_size = 0.78
+damping = 0.18
+spread = 0.9
+hipass = 0.85
+dry = 0.62
+wet = 0.77
+
+[sub_resource type="AudioEffectChorus" id=9]
+resource_name = "Chorus"
+voice_count = 3
+voice/1/level_db = 4.4
+voice/2/level_db = 0.9
+voice/3/delay_ms = 12.0
+voice/3/rate_hz = 1.0
+voice/3/depth_ms = 0.0
+voice/3/level_db = 0.0
+voice/3/cutoff_hz = 16000.0
+voice/3/pan = 0.0
 
 [sub_resource type="AudioEffectReverb" id=5]
 resource_name = "Reverb"
@@ -78,13 +105,25 @@ bus/4/effect/0/effect = SubResource( 3 )
 bus/4/effect/0/enabled = true
 bus/4/effect/1/effect = SubResource( 4 )
 bus/4/effect/1/enabled = true
-bus/5/name = "Melody"
+bus/5/name = "Big"
 bus/5/solo = false
 bus/5/mute = false
 bus/5/bypass_fx = false
-bus/5/volume_db = -8.00903
+bus/5/volume_db = -2.70802
 bus/5/send = "Master"
-bus/5/effect/0/effect = SubResource( 5 )
+bus/5/effect/0/effect = SubResource( 10 )
 bus/5/effect/0/enabled = true
-bus/5/effect/1/effect = SubResource( 6 )
+bus/5/effect/1/effect = SubResource( 7 )
 bus/5/effect/1/enabled = true
+bus/5/effect/2/effect = SubResource( 9 )
+bus/5/effect/2/enabled = true
+bus/6/name = "Melody"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = -8.00903
+bus/6/send = "Master"
+bus/6/effect/0/effect = SubResource( 5 )
+bus/6/effect/0/enabled = true
+bus/6/effect/1/effect = SubResource( 6 )
+bus/6/effect/1/enabled = true

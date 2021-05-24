@@ -13,7 +13,7 @@ export(bool) var zooming := false
 var child_scale := 0.2
 
 var child_step := 0.02
-var top_step := 2.0
+var top_step := 2.3
 var progress_step := 0.6
 
 var child_position_radius := 600.0
@@ -159,8 +159,10 @@ func fade_out():
 func on_mouse_enter():
   if status == CircleStatus.Main:
     orchestra.drum_event()
-  if status != CircleStatus.Large:
-    orchestra.play_instrument(instrument, note, status == CircleStatus.Small)
+  
+  var room: int = Orchestra.Room.SMALL if status == CircleStatus.Small else Orchestra.Room.BIG if status == CircleStatus.Large else -1
+  orchestra.play_instrument(instrument, note, room)
+  
   emit_signal("selected", self)
 func on_mouse_exit():
   if status == CircleStatus.Main:
