@@ -110,7 +110,6 @@ __meta__ = {
 }
 
 [node name="CursorLight" type="Light2D" parent="."]
-visible = false
 texture = ExtResource( 7 )
 texture_scale = 0.5
 color = Color( 1, 1, 1, 0.843137 )

@@ -105,9 +105,9 @@ func fill_children():
     star.fade_in()
   
 
-func add_child_circle(angle: float, note: int, child_instrument: int):
+func add_child_circle(angle: float, child_note: int, child_instrument: int):
   var child: CircleAbstract = circle_scene.instance()
-  child.note = note
+  child.note = child_note
   child.instrument = child_instrument
     
   child.color = child_color
@@ -119,15 +119,15 @@ func add_child_circle(angle: float, note: int, child_instrument: int):
   child.melody_position = -1
   if final:
     child.melody_position = -2
-  elif orchestra.validate_path(note, melody_position + 1):
+  elif orchestra.validate_path(child_note, melody_position + 1):
     child.melody_position = (melody_position + 1)%orchestra.melody_size
-  elif orchestra.validate_path(note, 0):
+  elif orchestra.validate_path(child_note, 0):
     child.melody_position = 0
   
   if child.melody_position == orchestra.melody_size - 1:
     child.final = true
     child.color.h = fmod(abs(color.h + 0.5), 1.0)
-  elif !final && melody_position >= -1 && orchestra.is_melody_end(note):
+  elif !final && melody_position >= -1 && orchestra.is_melody_end(child_note):
     child.clue = true
 
   child.connect("selected", self, "on_child_select")

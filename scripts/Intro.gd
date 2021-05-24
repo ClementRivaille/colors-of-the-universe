@@ -25,6 +25,7 @@ func init_self():
   circle.connect("target", self, "target_child")
   circle.child_step = 0.2
   circle.instrument = Instruments.InstrumentType.CELLO
+  circle.melody_position = -2
   children_circle = [circle]
   active_child = circle
   
