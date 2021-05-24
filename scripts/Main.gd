@@ -56,3 +56,12 @@ func disconnect_circle(circle: Circle):
   circle.disconnect("is_top", self, "switch_root_circle")
   circle.disconnect("target", self, "change_target")
   circle.disconnect("end_validated", self, "on_validate_end")
+
+func _input(event: InputEvent):
+  if (event.is_action_pressed("fullscreen")):
+    OS.window_fullscreen = ! OS.window_fullscreen
+  if (event.is_action_pressed("ui_cancel")):
+    if OS.window_fullscreen:
+      OS.window_fullscreen = false
+    else:
+      get_tree().quit()
